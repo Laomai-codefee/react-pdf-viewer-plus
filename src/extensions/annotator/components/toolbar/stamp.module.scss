@@ -1,0 +1,56 @@
+.StampPop {
+    width: 275px;
+    .container {
+        max-height: 200px;
+        overflow: auto;
+        display: flex;
+        flex-wrap: wrap;
+    }
+    ul,
+    li {
+        margin: 0;
+        list-style: none;
+        padding: 0;
+        li:hover {
+            background-color: #ededed;
+        }
+    }
+    li {
+        display: flex;
+        margin: 5px;
+        padding: 3px;
+        justify-content: center;
+        align-items: center;
+        border-radius: 5px;
+        width: 120px;
+        text-align: center;
+        img {
+            height: 48px;
+            max-width: 100px;
+            overflow: clip;
+            object-fit: contain;
+        }
+    }
+}
+
+.StampTool {
+    margin: 0 auto;
+    .container {
+        position: relative;
+        margin: 0 auto;
+        .imagePreview {
+            background-color: #eee;
+            border: 1px solid #ccc;
+            overflow: auto;
+            .konvajs-content {
+                z-index: 99;
+                margin: 0 auto;
+            }
+        }
+        .formItem {
+            height: 36px;
+            display: flex;
+            align-items: center;
+        }
+    }
+}

@@ -1,0 +1,178 @@
+.PdfjsExtensionViewer {
+    --bg-color: #fafafa;
+    --bg-color-secondary: #ededed;
+    --bg-color-tertiary: #f9f9f9;
+    --bg-color-quaternary: #e4e4e4;
+
+    --border-color: rgba(0, 0, 0, 0.06);
+    --border-color-light: rgba(0, 0, 0, 0.03);
+    --border-color-strong: rgba(0, 0, 0, 0.12);
+
+    --bg-hover: rgba(0, 0, 0, 0.04);
+    --bg-hover-subtle: rgba(0, 0, 0, 0.02);
+
+    --bg-active: rgba(0, 0, 0, 0.03);
+    --bg-active-strong: rgba(0, 0, 0, 0.06);
+
+    --bg-selected: rgba(0, 0, 0, 0.035);
+    --bg-selected-strong: rgba(0, 0, 0, 0.055);
+
+    --bg-focus: rgba(0, 0, 0, 0.06);
+    --focus-ring: rgba(0, 0, 0, 0.1);
+
+    --bg-disabled: rgba(0, 0, 0, 0.02);
+    --text-disabled: rgba(0, 0, 0, 0.25);
+
+    --header-height: 45px;
+    --toolbar-height: 40px;
+    --shadow-light: 0 1px 2px rgba(0, 0, 0, 0.03);
+    --shadow-medium: 0 2px 6px rgba(0, 0, 0, 0.06);
+    --shadow-heavy: 0 6px 16px rgba(0, 0, 0, 0.1);
+
+    background-color: var(--bg-color);
+    height: 100%;
+}
+
+// HEADER
+.viewerHeader {
+    background-color: var(--bg-color);
+    height: var(--header-height);
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--border-color);
+    width: 100%; // 确保头部占据整个宽度
+    * {
+        line-height: normal;
+    }
+
+    &-title {
+        height: var(--header-height);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex: 1;
+    }
+}
+
+// LAYOUT
+.viewerContainer {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-width: 0; // 允许容器收缩到小于其内容的宽度
+    // TOOLBAR
+    &-header {
+        background-color: var(--bg-color-tertiary);
+        height: var(--toolbar-height);
+        box-shadow: var(--shadow-medium);
+        position: relative;
+        overflow: auto;
+        z-index: 2;
+        * {
+            line-height: normal;
+        }
+
+        &-toolbar {
+        }
+    }
+
+    // CONTENT AREA
+    &-content {
+        position: relative;
+        background-color: var(--bg-color);
+        flex: 1;
+        overflow: hidden;
+    }
+}
+
+// PDF VIEWER AREA
+.pdfjsViewerContainer {
+    position: absolute;
+    background-color: var(--bg-color-secondary);
+    inset: 0;
+    overflow: auto;
+    padding: 24px 12px;
+    display: flex;
+    justify-content: center;
+
+    // 重置 pdf.js
+    :global(.pdfViewer) {
+        &,
+        * {
+            box-sizing: border-box;
+        }
+
+        // PDF PAGE
+        .page {
+            border: none;
+            margin-bottom: 16px;
+            box-shadow: var(--shadow-medium);
+            background-color: white;
+        }
+    }
+
+    // SCROLLBAR
+    &::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: rgba(0, 0, 0, 0.18);
+        border-radius: 8px;
+        transition: background 0.2s ease;
+
+        &:hover {
+            background: rgba(0, 0, 0, 0.38);
+        }
+    }
+
+    &::-webkit-scrollbar-corner {
+        background: transparent;
+    }
+}
+
+// SIDEBAR
+.viewerSidebar {
+    background-color: var(--bg-color-tertiary);
+    display: flex;
+    flex-direction: column;
+    box-shadow: var(--shadow-light);
+    height: 100%;
+    flex-shrink: 0;
+    width: 320px;
+    z-index: 2;
+
+    &-container {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        overflow: auto;
+
+        // SCROLLBAR
+        &::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        &::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background: rgba(0, 0, 0, 0.18);
+            border-radius: 8px;
+            transition: background 0.2s ease;
+
+            &:hover {
+                background: rgba(0, 0, 0, 0.38);
+            }
+        }
+
+        &::-webkit-scrollbar-corner {
+            background: transparent;
+        }
+    }
+}

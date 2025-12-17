@@ -1,0 +1,84 @@
+.filter {
+    ul,
+    li {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+    li {
+        padding: 3px;
+    }
+    li:hover {
+        background-color: #ddd;
+    }
+    li > label {
+        width: 100%;
+    }
+}
+.sidebar {
+    
+    .list {
+        padding: 6px 6px 24px 6px;
+        text-align: left;
+        .group {
+            margin-bottom: 10px;
+        }
+        .comment {
+            border: 1px solid var(--border-color);
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 8px 10px 10px 10px;
+            line-height: 150%;
+            p {
+                white-space: pre-wrap;
+                line-height: 150%;
+                padding: 0;
+                margin-top: 5px;
+            }
+            .title {
+                display: flex;
+                align-items: flex-start;
+                cursor: default;
+                .username {
+                    min-width: 30px;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    text-align: left;
+                }
+                .tool {
+                    margin-left: auto;
+                    display: flex;
+                    align-items: center;
+                }
+            }
+            .reply {
+                background-color: var(--bg-color-tertiary);
+                border-radius: 5px;
+                padding: 5px 10px;
+                margin-top: 8px;
+                margin-left: 15px;
+                .icon:hover {
+                    background-color: var(--toggled-btn-bg-color) !important;
+                }
+            }
+        }
+        .comment:hover {
+            background-color: var(--bg-hover);
+            .reply{
+                background-color: var(--bg-color-quaternary);
+            }
+        }
+        .selected {
+            border-color: var(--border-color-strong);
+            background-color: var(--bg-selected) !important;
+            .reply{
+                background-color: var(--bg-color-quaternary) !important;
+            }
+        }
+        h3,
+        .comment {
+            margin-bottom: 8px;
+        }
+    }
+}

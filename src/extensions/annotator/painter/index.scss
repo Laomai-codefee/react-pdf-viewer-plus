@@ -1,0 +1,68 @@
+#PdfjsExtension {
+    .textLayer {
+        z-index: 9 !important;
+    }
+}
+.PdfjsExtension_Annotator_painter_wrapper {
+    position: absolute;
+    text-align: initial;
+    top: 0;
+    inset: 0;
+    overflow: hidden;
+    line-height: 1;
+    text-size-adjust: none;
+    forced-color-adjust: none;
+    transform-origin: 0 0;
+    z-index: 1;
+}
+
+.PdfjsExtension_Annotator_selector_hover {
+    .PdfjsExtension_Annotator_painter_wrapper {
+        cursor: pointer !important;
+    }
+}
+
+.PdfjsExtension_Annotator_is_painting {
+    .PdfjsExtension_Annotator_painter_wrapper {
+        z-index: 999;
+    }
+}
+
+.PdfjsExtension_Annotator_painting_type_1,
+.PdfjsExtension_Annotator_painting_type_2,
+.PdfjsExtension_Annotator_painting_type_3 {
+    .textLayer {
+        &:not(.free) span {
+            cursor: var(--editorHighlight-editing-cursor);
+        }
+    }
+}
+
+.PdfjsExtension_Annotator_painting_type_4,
+.PdfjsExtension_Annotator_painting_type_5,
+.PdfjsExtension_Annotator_painting_type_6,
+.PdfjsExtension_Annotator_painting_type_11,
+.PdfjsExtension_Annotator_painting_type_12,
+.PdfjsExtension_Annotator_painting_type_13 {
+    .PdfjsExtension_Annotator_painter_wrapper {
+        cursor: crosshair;
+    }
+}
+.PdfjsExtension_Annotator_painting_type_7 {
+    .PdfjsExtension_Annotator_painter_wrapper {
+        cursor: var(--editorInk-editing-cursor);
+    }
+}
+
+.PdfjsExtension_Annotator_painting_type_8 {
+    .PdfjsExtension_Annotator_painter_wrapper {
+        cursor: var(--editorFreeHighlight-editing-cursor);
+    }
+}
+
+.PdfjsExtension_Annotator_painting_type_9,
+.PdfjsExtension_Annotator_painting_type_10 {
+    .PdfjsExtension_Annotator_painter_wrapper {
+        cursor: var(--PdfjsExtension_Annotator-image-cursor);
+    }
+}
