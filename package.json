@@ -1,6 +1,6 @@
 {
     "name": "react-pdf-viewer-plus",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "A modern, extensible React PDF viewer and annotator built on top of PDF.js, designed for enterprise-grade document reading and annotation scenarios.",
     "keywords": [
         "pdf",
