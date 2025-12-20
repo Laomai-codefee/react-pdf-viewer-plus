@@ -1,6 +1,6 @@
 {
     "name": "pdfjs-annotation-extension-for-react",
-    "version": "0.1.2",
+    "version": "0.1.3",
     "description": "A modern, extensible React PDF viewer and annotator built on top of PDF.js, designed for enterprise-grade document reading and annotation scenarios.",
     "keywords": [
         "pdf",
