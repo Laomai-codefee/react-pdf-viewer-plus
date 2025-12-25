@@ -1,9 +1,11 @@
 import { useEffect, useRef, useState, useCallback } from 'react'
 import * as pdfjsLib from 'pdfjs-dist/legacy/build/pdf.mjs'
 import { DownloadManager, EventBus, PDFLinkService, PDFViewer } from 'pdfjs-dist/legacy/web/pdf_viewer.mjs'
-import { PDFDataRangeTransport } from 'pdfjs-dist/legacy/build/pdf.mjs'
+import { AnnotationMode, getDocument, PDFDataRangeTransport, PDFDocumentLoadingTask, PDFDocumentProxy } from 'pdfjs-dist/legacy/build/pdf.mjs'
 
-pdfjsLib.GlobalWorkerOptions.workerSrc = new URL('pdfjs-dist/legacy/build/pdf.worker.mjs', import.meta.url).toString()
+import workerUrl from 'pdfjs-dist/legacy/build/pdf.worker.min.mjs?url';
+
+pdfjsLib.GlobalWorkerOptions.workerSrc = workerUrl;
 
 export interface UseViewerOptions {
     /** PDF 文件 URL */
@@ -11,7 +13,7 @@ export interface UseViewerOptions {
     /** 是否启用 Range 加载， 默认 auto */
     enableRange?: boolean | 'auto'
     /** PDF 加载成功回调 */
-    onLoadSuccess?: (pdfDocument: pdfjsLib.PDFDocumentProxy) => void
+    onLoadSuccess?: (pdfDocument: PDFDocumentProxy) => void
     /** PDF 加载失败回调 */
     onLoadError?: (error: Error) => void
     /** PDF 加载结束（包括成功或失败） */
@@ -46,11 +48,11 @@ export function usePdfViewer(containerRef: React.RefObject<HTMLDivElement>, opti
         onViewerInit,
         eventBus: externalEventBus,
         textLayerMode = 1,
-        annotationMode = pdfjsLib.AnnotationMode.DISABLE,
+        annotationMode = AnnotationMode.DISABLE,
         externalLinkTarget = 2
     } = options
 
-    const stableOnLoadSuccess = useCallback((pdfDocument: pdfjsLib.PDFDocumentProxy) => onLoadSuccess?.(pdfDocument), [onLoadSuccess])
+    const stableOnLoadSuccess = useCallback((pdfDocument: PDFDocumentProxy) => onLoadSuccess?.(pdfDocument), [onLoadSuccess])
     const stableOnLoadError = useCallback((error: Error) => onLoadError?.(error), [onLoadError])
     const stableOnLoadEnd = useCallback(() => onLoadEnd?.(), [onLoadEnd])
     const stableOnViewerInit = useCallback((viewer: PDFViewer) => onViewerInit?.(viewer), [onViewerInit])
@@ -62,7 +64,7 @@ export function usePdfViewer(containerRef: React.RefObject<HTMLDivElement>, opti
 
     const [loading, setLoading] = useState(true)
     const [progress, setProgress] = useState(0)
-    const [pdfDocument, setPdfDocument] = useState<pdfjsLib.PDFDocumentProxy | null>(null)
+    const [pdfDocument, setPdfDocument] = useState<PDFDocumentProxy | null>(null)
     const [metadata, setMetadata] = useState<any>(null)
     const [loadError, setLoadError] = useState<Error | null>(null)
 
@@ -126,14 +128,14 @@ export function usePdfViewer(containerRef: React.RefObject<HTMLDivElement>, opti
         async (useRange: boolean) => {
             if (useRange) {
                 const transport = await createTransport(url as string)
-                return pdfjsLib.getDocument({ range: transport })
+                return getDocument({ range: transport })
             }
-            return pdfjsLib.getDocument({ url, disableRange: true, disableStream: true })
+            return getDocument({ url, disableRange: true, disableStream: true })
         },
         [url, createTransport]
     )
 
-    const loadingTaskRef = useRef<pdfjsLib.PDFDocumentLoadingTask | null>(null)
+    const loadingTaskRef = useRef<PDFDocumentLoadingTask | null>(null)
 
     const loadPdf = useCallback(async () => {
         if (!url) return
@@ -150,7 +152,7 @@ export function usePdfViewer(containerRef: React.RefObject<HTMLDivElement>, opti
         try {
             const shouldTryRange = enableRange === true || enableRange === 'auto'
 
-            let loadingTask: pdfjsLib.PDFDocumentLoadingTask
+            let loadingTask: PDFDocumentLoadingTask
 
             if (shouldTryRange) {
                 triedRange = true

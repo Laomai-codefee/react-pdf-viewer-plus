@@ -1,15 +1,14 @@
 // src/context/PdfViewerContext.ts
 import React, { createContext, useContext } from 'react';
-import * as pdfjsLib from 'pdfjs-dist';
 import type { UseViewerOptions } from '../hooks/usePdfViewer';
-import { EventBus, PDFViewer } from 'pdfjs-dist/types/web/pdf_viewer';
+import { EventBus, PDFDocumentProxy, PDFViewer } from 'pdfjs-dist/types/web/pdf_viewer';
 
 /**
  * 定义通过 Context 提供给所有子组件的值
  */
 export interface PdfViewerContextValue {
     /** PDF 文档对象 */
-    pdfDocument: pdfjsLib.PDFDocumentProxy | null;
+    pdfDocument: PDFDocumentProxy | null;
     /** PDFViewer 实例 */
     pdfViewer: PDFViewer | null;
     /** EventBus 实例 */
