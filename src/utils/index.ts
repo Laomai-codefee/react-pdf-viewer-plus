@@ -111,3 +111,32 @@ export function isSameColor(color1: string, color2: string): boolean {
         return false
     }
 }
+
+export function debounce<T extends (...args: any[]) => any>(func: T, wait: number, immediate: boolean = false): (...args: Parameters<T>) => void {
+    let timeoutId: NodeJS.Timeout | null = null
+    return function (this: any, ...args: Parameters<T>) {
+        const callNow = immediate && !timeoutId
+        
+        if (timeoutId) {
+            clearTimeout(timeoutId)
+        }
+        
+        timeoutId = setTimeout(() => {
+            timeoutId = null
+            if (!immediate) func.apply(this, args)
+        }, wait)
+        
+        if (callNow) func.apply(this, args)
+    }
+}
+export function once<T extends (...args: any[]) => any>(fn: T): (...args: Parameters<T>) => ReturnType<T> {
+    let called = false
+    let result: ReturnType<T>
+    return function (this: any, ...args: Parameters<T>): ReturnType<T> {
+        if (!called) {
+            called = true
+            result = fn.apply(this, args)
+        }
+        return result
+    }
+}

@@ -8,6 +8,7 @@ const PdfAnnotatorCustom: React.FC = () => {
         <div>
             <PdfAnnotator
                 theme="violet"
+                enableRange={false}
                 title={<strong>PDF ANNOTATOR FULL</strong>}
                 url={pdfUrl}
                 isSidebarCollapsed={false}

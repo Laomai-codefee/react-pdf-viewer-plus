@@ -8,10 +8,10 @@ import { PopoverBarRef } from '@/components/popover_bar'
 import { SelectionBar } from './components/selection_bar'
 import { useOptionsContext } from './context/options_context'
 import { MenuBar, MenuBarRef } from './components/menu_bar'
-import { debounce } from './utils/utils'
 import { IAnnotationStore } from './const/definitions'
 import { FREE_TEXT_EDITOR } from './painter/const'
 import { useAnnotationStore } from './store'
+import { debounce } from '@/utils'
 
 interface AnnotatorExtensionProps {
     enableNativeAnnotations: boolean

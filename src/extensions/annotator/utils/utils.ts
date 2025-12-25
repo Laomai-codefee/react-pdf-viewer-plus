@@ -330,34 +330,7 @@ function parseQueryString(query: string): Map<string, string> {
     return params
 }
 
-function debounce<T extends (...args: any[]) => any>(func: T, wait: number, immediate: boolean = false): (...args: Parameters<T>) => void {
-    let timeoutId: NodeJS.Timeout | null = null
-    return function (this: any, ...args: Parameters<T>) {
-        const callNow = immediate && !timeoutId
-        
-        if (timeoutId) {
-            clearTimeout(timeoutId)
-        }
-        
-        timeoutId = setTimeout(() => {
-            timeoutId = null
-            if (!immediate) func.apply(this, args)
-        }, wait)
-        
-        if (callNow) func.apply(this, args)
-    }
-}
-function once<T extends (...args: any[]) => any>(fn: T): (...args: Parameters<T>) => ReturnType<T> {
-    let called = false
-    let result: ReturnType<T>
-    return function (this: any, ...args: Parameters<T>): ReturnType<T> {
-        if (!called) {
-            called = true
-            result = fn.apply(this, args)
-        }
-        return result
-    }
-}
+
 
 /**
  * 将 Konva 的 Rect（左上坐标系统）转换为 PDF 的 Rect（左下坐标系统）
@@ -447,8 +420,6 @@ export {
     formatTimestamp,
     formatPDFDate,
     parseQueryString,
-    debounce,
-    once,
     convertKonvaRectToPdfRect,
     stringToPDFHexString,
     getTimestampString,

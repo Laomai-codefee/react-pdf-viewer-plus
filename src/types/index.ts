@@ -9,7 +9,7 @@ export type PdfScale = 'auto' | 'page-actual' | 'page-fit' | 'page-width' | stri
 export interface PdfBaseProps {
     /**
      * 主题色
-     * @default: 'indigo'
+     * @default: 'violet'
      */
     theme?:
         | 'ruby'
@@ -69,4 +69,10 @@ export interface PdfBaseProps {
      * 控制侧边栏是否折叠
      */
     isSidebarCollapsed?: boolean
+
+    /**
+     * 是否开启流式加载模式, auto 为自动判断
+     * @default auto
+     */
+    enableRange?: boolean | 'auto'
 }

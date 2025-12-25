@@ -19,6 +19,7 @@ import { AnnoIcon } from '@/extensions/annotator/const/icons'
 import { AiOutlineSave } from 'react-icons/ai'
 
 export const PdfAnnotator: React.FC<PdfAnnotatorProps> = ({
+    enableRange = 'auto',
     theme = 'violet',
     title = 'PDF ANNOTATOR',
     url,
@@ -38,7 +39,7 @@ export const PdfAnnotator: React.FC<PdfAnnotatorProps> = ({
     layoutStyle,
     actions
 }) => {
-    const viewerOptions = useMemo(() => ({ textLayerMode: 1, annotationMode: 0, externalLinkTarget: 0 }), [])
+    const viewerOptions = useMemo(() => ({ textLayerMode: 1, annotationMode: 0, externalLinkTarget: 0, enableRange }), [])
 
     const { t } = useTranslation(['annotator', 'common'], { useSuspense: false })
 

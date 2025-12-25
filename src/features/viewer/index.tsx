@@ -112,6 +112,7 @@ const ToolBarRenderer: React.FC<{ toolbar?: PdfViewerProps['toolbar'] }> = ({ to
 }
 
 export const PdfViewer: React.FC<PdfViewerProps> = ({
+    enableRange = 'auto',
     title = 'PDF VIEWER',
     url,
     locale = 'zh-CN',
@@ -130,7 +131,8 @@ export const PdfViewer: React.FC<PdfViewerProps> = ({
     const viewerOptions = useMemo(() => ({
         textLayerMode: showTextLayer ? 1 : 0,
         annotationMode: 0,
-        externalLinkTarget: 0
+        externalLinkTarget: 0,
+        enableRange,
     }), [showTextLayer])
 
     useEffect(() => {
