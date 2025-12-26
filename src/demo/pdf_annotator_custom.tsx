@@ -86,7 +86,7 @@ const PdfAnnotatorCustom: React.FC = () => {
                         <button onClick={() => props.exportToPdf('Export pdf')}>Export PDF</button>
                     </>
                 )}
-                layoutStyle={{ height: '100vh' }}
+                layoutStyle={{ height: '96vh' }}
                 locale='en-US'
                 onSave={(data) => {
                     alert(JSON.stringify(data));

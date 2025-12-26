@@ -9,7 +9,6 @@ import { Flex, Separator, Theme } from '@radix-ui/themes'
 import { usePdfViewerContext } from '@/context/pdf_viewer_context'
 import { ViewerExtension } from '@/extensions/viewer'
 import { EventBus, PDFViewer } from 'pdfjs-dist/types/web/pdf_viewer'
-import { PageTool } from '@/components/page_tool'
 
 export interface PdfViewerContextValue {
     pdfViewer: PDFViewer | null
@@ -98,7 +97,6 @@ const ToolBarRenderer: React.FC<{ toolbar?: PdfViewerProps['toolbar'] }> = ({ to
     if (!toolbar) {
         return (
             <Flex gap="3" align="center">
-                <PageTool /> <Separator orientation="vertical" />
                 <ZoomTool />
             </Flex>
         )
@@ -107,8 +105,6 @@ const ToolBarRenderer: React.FC<{ toolbar?: PdfViewerProps['toolbar'] }> = ({ to
     if (typeof toolbar === 'function') {
         return (
             <Flex gap="3" align="center">
-                <PageTool />
-                <Separator orientation="vertical" />
                 <ZoomTool />
                 <Separator orientation="vertical" />
                 {toolbar(context)}

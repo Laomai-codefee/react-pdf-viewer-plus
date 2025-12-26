@@ -15,7 +15,6 @@ import { useOptionsContext } from '../../context/options_context'
 import { useAnnotationStore } from '../../store'
 import { Flex, Separator } from '@radix-ui/themes'
 import { ColorPicker } from '@/components/color_picker'
-import { PageTool } from '@/components/page_tool'
 
 interface ToolbarProps {
     defaultAnnotationName: string
@@ -171,8 +170,6 @@ export const Toolbar: React.FC<ToolbarProps> = ({ defaultAnnotationName, stamps,
 
     return (
         <Flex gap="3" align="center">
-            <PageTool />
-            <Separator orientation="vertical" />
             <ZoomTool />
             <Separator orientation="vertical" />
             {buttons}

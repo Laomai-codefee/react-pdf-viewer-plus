@@ -109,7 +109,7 @@ const PdfAnnotatorFull: React.FC = () => {
                         ]
                     }
                 }}
-                layoutStyle={{ height: '100vh' }}
+                layoutStyle={{ height: '96vh' }}
                 onSave={(data) => {
                     console.log('💾 Save', data);
                     alert(JSON.stringify(data));

@@ -116,9 +116,10 @@ export const LoadingIndicator: React.FC<LoadingIndicatorProps> = ({
                     value={progressBar.value}
                     size="1"
                     variant="soft"
-                    color="grass"
                     style={{
                         position: 'absolute',
+                        opacity: 0.5,
+                        height: '2px',
                         top: 0,
                         left: 0,
                         width: '100%',

@@ -10,7 +10,7 @@ const PdfViewerCustom: React.FC = () => {
                 enableRange={false}
                 title={<strong>PDF VIEWER CUSTOM</strong>}
                 url={pdfUrl}
-                layoutStyle={{ width: '100vw', height: '100vh' }}
+                layoutStyle={{ width: '100vw', height: '96vh' }}
                 locale='en-US'
                 showTextLayer={false}
                 actions={(context) => (

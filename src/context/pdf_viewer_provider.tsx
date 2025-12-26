@@ -10,6 +10,7 @@ import { SidebarToggle } from '@/components/sidebar_toggle'
 import { Flex, Box } from '@radix-ui/themes'
 import { LoadingIndicator } from '@/components/loading_indicator'
 import { ErrorDisplay } from '@/components/error_display'
+import { PageIndicator } from '@/components/page_indicator'
 
 export interface PdfViewerProviderProps extends Omit<UseViewerOptions, 'eventBus'> {
     children: React.ReactNode
@@ -155,6 +156,7 @@ export const PdfViewerProvider: React.FC<PdfViewerProviderProps> = ({
                                 </Flex>
                             )}
                             <Box position="relative" flexGrow="1" className={styles['viewerContainer-content']}>
+                                <PageIndicator />
                                 <div ref={viewerContainerRef} className={styles.pdfjsViewerContainer}>
                                     <div className="pdfViewer"></div>
                                 </div>
